@@ -141,7 +141,7 @@ ylabel('NPS - [dB]','FontSize',20);
 title('Ruído de Fundo na Câmara Reverberante','FontSize',20);
 
 % Grafico do erro da potencia
-figure(3)
+figure(7)
 erro_potencia_reverberacao = nivel_potencia_sonora_reverberacao - nivel_potencia_sonora_referencia;
 erro_potencia_anecoica = nivel_potencia_sonora_anecoica - nivel_potencia_sonora_referencia;
 A = [erro_potencia_anecoica; erro_potencia_reverberacao]';
