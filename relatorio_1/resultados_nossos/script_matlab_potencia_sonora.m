@@ -84,7 +84,6 @@ title('Nível de Pressão Sonora na Câmara Reverberante','FontSize',20);
 load NWS_Ref;
 nivel_potencia_sonora_referencia = NWS_Ref;
 figure(3)
-
 nivel_potencia_sonora_reverberacao = nivel_potencia_sonora_reverberacao';
 nivel_potencia_sonora_referencia = nivel_potencia_sonora_referencia';
 A = [nivel_potencia_sonora_anecoica; nivel_potencia_sonora_reverberacao; nivel_potencia_sonora_referencia]';
@@ -130,7 +129,7 @@ ylabel('NPS - [dB]','FontSize',20);
 title('Ruído de Fundo na Câmara Semianecóica ','FontSize',20);
 
 valores_ruido_fundo_reverberante = textread('RuidoFundoReverberante.txt');
-nps_fundo_reverberante = 20*log(valores_ruido_fundo_reverberante(:,2)/0.00002);
+nps_fundo_reverberante = 20*log10(valores_ruido_fundo_reverberante(:,2)/0.00002);
 figure(6);
 bar(nps_fundo_reverberante);
 hold on;
@@ -140,3 +139,20 @@ set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.
 xlabel('Frequência - [Hz]','FontSize',20);
 ylabel('NPS - [dB]','FontSize',20);
 title('Ruído de Fundo na Câmara Reverberante','FontSize',20);
+
+% Grafico do erro da potencia
+figure(3)
+erro_potencia_reverberacao = nivel_potencia_sonora_reverberacao - nivel_potencia_sonora_referencia;
+erro_potencia_anecoica = nivel_potencia_sonora_anecoica - nivel_potencia_sonora_referencia;
+A = [erro_potencia_anecoica; erro_potencia_reverberacao]';
+bar(A)
+%ylim([0 115])
+set(gca,'XTick',1:1:15)
+set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
+'3.15k', '4k','5k','6.3k'},'FontSize',12)
+xlabel('Frequência - [Hz]','FontSize',20)
+ylabel('NWS - [dB]','FontSize',20)
+title('Erro da Potência Sonora','FontSize',20)
+k=legend('Erro Anecóica','Erro Reverberante');
+set(k,'FontSize',20)
+
