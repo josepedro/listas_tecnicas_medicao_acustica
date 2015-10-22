@@ -44,7 +44,7 @@ set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.
 '3.15k', '4k','5k','6.3k'},'FontSize',12);
 xlabel('Frequência - [Hz]','FontSize',20);
 ylabel('NPS - [dB]','FontSize',20);
-title('Nível de Pressão Sonora na Câmara Anecóica','FontSize',20);
+title('Nível de Pressão Sonora na Câmara Semianecóica','FontSize',20);
 
 %% POTENCIA SONORA - CAMARA REVERBERANTE 
 % ler valores rms reverberante
@@ -95,7 +95,7 @@ set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.
 xlabel('Frequência - [Hz]','FontSize',20)
 ylabel('NWS - [dB]','FontSize',20)
 title('Nível de Potência Sonora','FontSize',20)
-k=legend('Câmara Anecóica','Câmara Reverberante','Fonte de Referência');
+k=legend('Câmara Semianecóica','Câmara Reverberante','Fonte de Referência');
 set(k,'FontSize',20)
 
 figure(4)
@@ -119,7 +119,7 @@ for frequencia = 1:length(frequencias)
 	nps_fundo_media_anecoica(frequencia) = 20*log10(media_ruido/0.00002);
 end
 figure(5);
-bar(nps_fundo_media_anecoica);
+bar(nps_fundo_media_anecoica, 'y');
 hold on;
 set(gca,'XTick',1:1:15);
 set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
@@ -131,7 +131,7 @@ title('Ruído de Fundo na Câmara Semianecóica ','FontSize',20);
 valores_ruido_fundo_reverberante = textread('RuidoFundoReverberante.txt');
 nps_fundo_reverberante = 20*log10(valores_ruido_fundo_reverberante(:,2)/0.00002);
 figure(6);
-bar(nps_fundo_reverberante);
+bar(nps_fundo_reverberante, 'g');
 hold on;
 set(gca,'XTick',1:1:15);
 set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
