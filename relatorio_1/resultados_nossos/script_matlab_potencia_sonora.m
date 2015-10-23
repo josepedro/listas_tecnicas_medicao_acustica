@@ -13,8 +13,8 @@ microphone_8 = textread('microphone_8.txt');
 microphone_9 = textread('microphone_9.txt');
 microphone_10 = textread('microphone_10.txt');
 
-%% POTÊNCIA SONORA - CAMARA SEMI-ANECÓICA
-% Média entre as pressões sonoras da câmara anecóica
+%% POTENCIA SONORA - CAMARA SEMI-ANECOICA
+% Media entre as pressoes sonoras da camara anecoica
 pressao_rms(1:length(frequencias)) = 0;
 for frequencia = 1:length(frequencias)
 	pressao_rms(frequencia) = mean([microphone_1(frequencia) ...
@@ -42,9 +42,9 @@ bar(nivel_pressao_sonora_anecoica, 'r'); hold on;
 set(gca,'XTick',1:1:15);
 set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
 '3.15k', '4k','5k','6.3k'},'FontSize',12);
-xlabel('Frequência - [Hz]','FontSize',20);
+xlabel('Frequencia - [Hz]','FontSize',20);
 ylabel('NPS - [dB]','FontSize',20);
-title('Nível de Pressão Sonora na Câmara Semianecóica','FontSize',20);
+title('Nivel de Pressao Sonora na Camara Semianecoica','FontSize',20);
 
 %% POTENCIA SONORA - CAMARA REVERBERANTE 
 % ler valores rms reverberante
@@ -76,9 +76,9 @@ bar(nivel_pressao_sonora_anecoica, 'g'); hold on;
 set(gca,'XTick',1:1:15);
 set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
 '3.15k', '4k','5k','6.3k'},'FontSize',12);
-xlabel('Frequência - [Hz]','FontSize',20);
+xlabel('Frequencia - [Hz]','FontSize',20);
 ylabel('NPS - [dB]','FontSize',20);
-title('Nível de Pressão Sonora na Câmara Reverberante','FontSize',20);
+title('Nivel de Pressao Sonora na Camara Reverberante','FontSize',20);
 
 % Plotando a comparacao dos niveis de potencia sonora
 load NWS_Ref;
@@ -92,10 +92,10 @@ ylim([0 115])
 set(gca,'XTick',1:1:15)
 set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
 '3.15k', '4k','5k','6.3k'},'FontSize',12)
-xlabel('Frequência - [Hz]','FontSize',20)
+xlabel('Frequencia - [Hz]','FontSize',20)
 ylabel('NWS - [dB]','FontSize',20)
-title('Nível de Potência Sonora','FontSize',20)
-k=legend('Câmara Semianecóica','Câmara Reverberante','Fonte de Referência');
+title('Nivel de Potencia Sonora','FontSize',20)
+k=legend('Camara Semianecoica','Camara Reverberante','Fonte de Referencia');
 set(k,'FontSize',20)
 
 figure(4)
@@ -103,9 +103,9 @@ bar([alpha_sabine alpha_eyring])
 set(gca,'XTick',1:1:15)
 set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
 '3.15k', '4k','5k','6.3k'},'FontSize',12)
-xlabel('Frequência - [Hz]','FontSize',20)
-ylabel('C. Absorção \alpha','FontSize',20)
-title('C. Aborção Câmara Reverberante','FontSize',20)
+xlabel('Frequencia - [Hz]','FontSize',20)
+ylabel('Absorcao \alpha','FontSize',20)
+title('Aborcao Camara Reverberante','FontSize',20)
 k=legend('Sabine','Eyring');
 set(k,'FontSize',20)
 ylim([0 0.09])
@@ -124,21 +124,21 @@ hold on;
 set(gca,'XTick',1:1:15);
 set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
 '3.15k', '4k','5k','6.3k'},'FontSize',12);
-xlabel('Frequência - [Hz]','FontSize',20);
+xlabel('Frequencia - [Hz]','FontSize',20);
 ylabel('NPS - [dB]','FontSize',20);
-title('Ruído de Fundo na Câmara Semianecóica ','FontSize',20);
+title('Ruido de Fundo na Camara Semianecoica ','FontSize',20);
 
 valores_ruido_fundo_reverberante = textread('RuidoFundoReverberante.txt');
 nps_fundo_reverberante = 20*log10(valores_ruido_fundo_reverberante(:,2)/0.00002);
 figure(6);
-bar(nps_fundo_reverberante, 'g');
+bar(nps_fundo_reverberante, 'c');
 hold on;
 set(gca,'XTick',1:1:15);
 set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
 '3.15k', '4k','5k','6.3k'},'FontSize',12);
-xlabel('Frequência - [Hz]','FontSize',20);
+xlabel('Frequencia - [Hz]','FontSize',20);
 ylabel('NPS - [dB]','FontSize',20);
-title('Ruído de Fundo na Câmara Reverberante','FontSize',20);
+title('Ruido de Fundo na Camara Reverberante','FontSize',20);
 
 % Grafico do erro da potencia
 figure(7)
@@ -150,9 +150,11 @@ bar(A)
 set(gca,'XTick',1:1:15)
 set(gca,'XTickLabel',{'250', '315','400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
 '3.15k', '4k','5k','6.3k'},'FontSize',12)
-xlabel('Frequência - [Hz]','FontSize',20)
+xlabel('Frequencia - [Hz]','FontSize',20)
 ylabel('NWS - [dB]','FontSize',20)
-title('Erro da Potência Sonora','FontSize',20)
-k=legend('Erro Anecóica','Erro Reverberante');
+title('Erro da Potencia Sonora','FontSize',20)
+k=legend('Erro Anecoica','Erro Reverberante');
 set(k,'FontSize',20)
+
+
 

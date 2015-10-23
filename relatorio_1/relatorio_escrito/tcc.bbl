@@ -5,4 +5,15 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.2 }
 
+\bibitem[BISTAFA 2011]{bistafa}
+\abntrefinfo{BISTAFA}{BISTAFA}{2011}
+{BISTAFA, S.~R. \emph{Acústica aplicada ao controle de ruído}. [S.l.]: 2°
+  edição – São Paulo, 2011.}
+
+\bibitem[Gan 1999]{potencia}
+\abntrefinfo{Gan}{GAN}{1999}
+{GAN, J. Scanning paths for estimating sound power of noise sources by sound
+  intensity scanning method.
+\emph{Chinese Journal of Acoustics}, v.~18, n.~4, p. 353--359, 1999.}
+
 \end{thebibliography}
