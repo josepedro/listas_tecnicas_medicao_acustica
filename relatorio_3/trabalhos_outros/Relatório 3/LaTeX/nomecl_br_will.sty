@@ -1,0 +1,77 @@
+\usepackage[portuguese,noprefix]{nomencl}
+% Produces lists of symbols using the capabilities of the MakeIndex program.
+% cria a lista de simbolos
+\RequirePackage{ifthen}
+\RequirePackage{ragged2e}
+
+%%% Renomeia para ``Nomenclatura''
+\renewcommand{\nomname}{Nomenclatura}
+%\renewcommand{\nompreamble}{\markboth{Nomenclature}{Nomenclature}}
+
+%%% Cria novo comando
+\newcommand{\nomecl}[3]{\nomenclature[#1]{#2}{#3}}                %% inclui item
+\newcommand{\nomeclp}[3]{\nomenclature[#1]{#2}{#3\nomrefpage}}    %% inclui a página
+\newcommand{\nomecleq}[3]{\nomenclature[#1]{#2}{#3\nomrefeq}}     %% inclui equação
+\newcommand{\nomeclpeq}[3]{\nomenclature[#1]{#2}{#3\nomrefeqpage}}%% inglui página e equação
+
+%%% Coloca ref. da equação
+\renewcommand*{\eqdeclaration}[1]{, eq.~({#1})}
+
+%%% Cologa ref. da página
+\renewcommand*{\pagedeclaration}[1]{,\, p\'ag.\,\,\hyperpage{#1}.}
+
+%%% Head of sections
+\newcommand\grouphead[1]{%
+  \rlap{%
+    \parbox{\textwidth}{\textbf{\large#1 \hrulefill}}%
+  }\hfill
+}
+
+%%% Enable two line label
+\renewcommand{\nomlabel}[1]{%
+  \smash{\parbox[t]{1.5cm}{\RaggedRight#1}}}
+
+%%% Create Groups
+\renewcommand{\nomgroup}[1]{%
+  \ifx#1A\relax
+    \item[\grouphead{Símbolos Gerais}]
+  \fi
+  \ifx#1G\relax
+    \item[\grouphead{Símbolos Gregos}]
+  \fi
+  \ifx#1P\relax
+    \item[\grouphead{Acrónimos}]
+  \fi
+  \ifx#1M\relax
+    \item[\grouphead{Operadores Matemáticos e Convenções}]
+  \fi	
+  \ifx#1O\relax
+    \item[\grouphead{--}]
+  \fi
+  \ifx#1T\relax
+    \item[\grouphead{Símbolos do Apêndice}]
+  \fi						
+  \bigskip}
+
+\makeatletter
+\newcommand{\nomenclatura}[1]{
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+\phantomsection
+\addcontentsline{toc}{section}{Nomenclatura}
+\onehalfspacing % Aumenta espaco entre a linhas na nomenclatura
+\setlength{\nomlabelwidth}{#1}
+\renewcommand*\nompreamble{\renewcommand{\thepage}{\roman{page}}}
+\printnomenclature}
+\makeatother
+
+\newcommand{\nomunit}[1]{ % funciona dentro do comando da nomenclatura
+ \renewcommand{\nomentryend}{{$\ensuremath\;\mathrm{\left[#1\right]}$}}}
+ % \nomunit funciona dentro do ambiente nomenclature 
+
+\newcommand{\unidade}[1]{\ensuremath\;\mathrm{\left[#1\right]}}
+% \newcommand cria um novo comando.
+% \unidade funciona no ambiente matematico e no deflist, para escrever as unidades em não italico e sempre com colchetes.
