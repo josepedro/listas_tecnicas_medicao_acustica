@@ -1,0 +1,26 @@
+%%%%%%%%%%%%%% Language of Back References
+% Check if hyperref exists
+\RequirePackage{hyperref}
+
+%%%%%%%% Portugu�s %\usepackage[hyperpageref]{backref}
+\renewcommand*{\backrefsep}{, }
+\renewcommand*{\backreflastsep}{ and~}
+\renewcommand*{\backreftwosep}{ and~}
+\renewcommand*{\backref}[1]{}	% empty definition for \backrefalt to be used, i.e. disable standard 
+\renewcommand*{\backrefalt}[4]{%
+   % alternative interface
+   % #1: number of distinct back references
+   % #2: backref list with distinct entries
+   % #3: number of back references including duplicates
+   % #4: backref list including duplicates
+%%%%%%%% Ingl�s
+
+\vspace{-2mm}
+	\scriptsize\itshape\mbox{
+    \ifnum#1=1 %
+     \\(Cited on page~%
+    \else
+      \\(Cited on pages~%
+    \fi
+    #2)
+		}}
