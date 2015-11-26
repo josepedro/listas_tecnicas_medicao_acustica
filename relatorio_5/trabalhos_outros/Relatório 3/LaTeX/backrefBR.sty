@@ -1,0 +1,34 @@
+%%%%%%%%%%%%%% Language of Back References
+% Check if hyperref exists
+  %\RequirePackage{hyperref}%
+	
+%\usepackage[pagebackref]{hyperref}
+%\usepackage[pagebackref]{backref}
+%pagebackref
+
+%\iftrue \usepackage[pagebackref=false]{hyperref}
+      	%\usepackage[pagebackref=true]{hyperref}
+%\fi
+	
+%%%%%%%% Português %\usepackage[hyperpageref]{backref}
+\renewcommand*{\backrefsep}{, }
+\renewcommand*{\backreflastsep}{ e~}
+\renewcommand*{\backreftwosep}{ e~}
+\renewcommand*{\backref}[1]{}	% empty definition for \backrefalt to be used, i.e. disable standard 
+\renewcommand*{\backrefalt}[4]{%
+   % alternative interface
+   % #1: number of distinct back references
+   % #2: backref list with distinct entries
+   % #3: number of back references including duplicates
+   % #4: backref list including duplicates
+%%%%%%%% Português
+
+\vspace{-2mm}
+	\scriptsize\itshape\mbox{
+    \ifnum#1=1 %
+     \\(Citado na página~%
+    \else
+      \\(Citado nas páginas~%
+    \fi
+    #2)
+		}}
