@@ -8,112 +8,62 @@ Em vista do que foi exposto, esse trabalho tem como objetivo determinar e analis
 
 \chapter{Fundamentação Teórica}\label{fundamentacao}
 
-\section{Tubo com Ressonador de Helmholtz}
 
-Considere um ressonador de Helmholtz, como o mostrado na figura \ref{fig.ressonador}, com volume $V$, pescoço de comprimento $L$ e seção transversal $S$.
+\chapter{Experimento e Equipamentos}\label{descricao}
+
+Para realizar as medições utilizou-se os seguintes instrumentos:
+
+\begin{itemize}
+	\item dois microfones;
+	\item um calibrador de microfone;
+	\item dois rotating boom;
+	\item um computador
+	\item um analisador de sinais modelo SCADAS da LMS;
+	\item uma placa de teste (1800 mm x 1130 mm x 2 mm);
+	\item uma fonte sonora;
+	\item um amplificador de potência;
+	\item uma fonte Sonora de referência.
+\end{itemize}
+
+E o esquemático das câmaras I e II, geradora e receptora respectivamente, foi constituída de acorda com a figura \ref{experimento_1}.
 
 \begin{figure}[h]
-\centering
-\includegraphics[scale=0.45]{ressonador.eps}
-\caption{Exemplo de ressonador}
-\label{fig.ressonador}
+	\centering
+	%\hspace{-4.5cm}
+	\includegraphics[scale=0.32]{imagem_3.eps}
+	%\includegraphics[width=40cm,height=40cm,keepaspectratio]{codigo/pressao_sonora_geradora.eps}
+	\caption{Esquemático do acoplamento das camaras I e II. Fonte: \cite{silva2009simulaccao}}
+	\label{experimento_1}
 \end{figure}
-
-O gás contido no pescoço possui uma massa efetiva:
-\begin{equation}
-    m = \rho_{0}SL
-\end{equation}
-
-A rigidez do sistema é dado por:
-\begin{equation}
-    K = \frac{-\rho_{0}c^{2}_{0}S^{2}}{V}
-\end{equation}
-
-Analisando o ressonador como um sistema de um grau de liberdade, pode-se calcular a frequência de ressonância, dada através da equação de movimento (sem dissipação e sem excitação). A ressonância ocorre quando:
-
-\begin{equation}
-    f_{0} = \frac{c_{0}}{2\pi}\sqrt{\frac{S}{LV}} [Hz]
-\end{equation}
 
 \newpage
-As dimensões do ressonador empregado no estudo são dadas na figura \ref{ressonador_2}.
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.45]{ressonador_2.eps}
-\caption{Ressonador abordado no estudo.}
-\label{ressonador_2}
-\end{figure}
-
-\section{Câmara de Expansão}
-
-Considere um tubo de seção transversal $S1$ contendo uma câmara de expansão de área $S2$ representado na figura \ref{camara}.
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.45]{camara.eps}
-\caption{Câmara de expansão.}
-\label{camara}
-\end{figure}
-
-Rearranjando as equações que descrevem o movimento de uma onda pelo tubo e aplicando as devidas condições de contorno, pode-se chegar à razão entre a potência transmitida e a incidente. Para isso, necessita-se determinar a razão $P_{t}/P_{i}$ e a razão $W_{trans}/W_{incid}$ fica:
-\begin{equation}
-    \frac{W_{trans}}{W_{incid}} = \frac{S_{1}P_{t}^{2}}{S_{1}P_{i}^{2}} = \frac{S_{1}\frac{P_{t}^{2}}{\rho_{0}c_{0}}}{S_{1}\frac{P_{i}^{2}}{\rho_{0}c_{0}}}
-\end{equation}
-
-Obtendo-se assim o coeficiente de transmissão $\alpha_{t}$:
-\begin{equation}
-    \alpha_{t} = \frac{P_{t}^{2}}{P_{i}^{2}} = \frac{4}{4cos^{2}(kl)+(\frac{S_{2}}{S_{1}}+\frac{S_{1}}{S_{2}})^{2}sen^{2}(kl)}
-\end{equation}
-
-E a perda de transmissão é dada por:
-\begin{equation}
-    TL = 10log(\frac{I_{trans}}{I_{incid}})^{-1} = 10log(\alpha_{t})^{-1}
-\end{equation}
-
-Câmaras de expansão proporcionam atenuação ao longo de amplas faixas de frequência (Figura 2). Maiores atenuação são obtidas quanto maior a razão entre as áreas $S_{1}/S_{2}$. O coeficiente de transmissão $\alpha_{t}$ apresenta valores unitários para frequências tais que $sen(kl) = 0$, ocorrendo quando:
-\begin{equation}
-    L = n\frac{\lambda}{2}
-\end{equation}
-Tal que $n = 1,2,3...$.
-
-As máximas atenuações ocorrem quando $cos(kl) = 0$, e isto ocorre quando:
-\begin{equation}
-    kL = n\frac{pi}{2}
-\end{equation}
-Tal que $n = 1,3,5 ...$
-
-Este modelo considera apenas as ressonâncias formadas na direção axial da câmara. Na prática, ocorrem formações de ondas estacionárias nas demais direções também (radial e circunferencial, se a cavidade for cilíndrica). Para nossos testes foi empregado a câmara de expansão ilustrada na figura \ref{camara_2}.
+Segue as dimensões das câmaras I e II na figura \ref{experimento_2}.
 
 \begin{figure}[h]
-\centering
-\includegraphics[scale=0.32]{camara_2.eps}
-\caption{Câmara de expansão abordada no estudo.}
-\label{camara_2}
+	\centering
+	%\hspace{-4.5cm}
+	\includegraphics[scale=0.35]{imagem_4.eps}
+	%\includegraphics[width=40cm,height=40cm,keepaspectratio]{codigo/pressao_sonora_geradora.eps}
+	\caption{Dimensões das câmaras I e II. Fonte: \cite{silva2009simulaccao}}
+	\label{experimento_2}
 \end{figure}
 
-\chapter{Experimento}\label{descricao}
-
-O experimento consiste de dois tubos com área interna iguais que possam ter umas das suas extremidades unidas por um tubo porta amostra (tubo onde a amostra é inserida). O número de conjuntos de tubo dependerá do range de frequência a ser testado. Numa das extremidades do tubo há uma caixa de som e na outra uma terminação anecóica \ref{tubo}.
-
+Segue os tempos de reverberação das câmaras I e II na figura \ref{experimento_3}.
 \begin{figure}[h]
-\centering
-\includegraphics[scale=0.72]{tubo.eps}
-\caption{Tubo para o experimento.}
-\label{tubo}
+	\centering
+	%\hspace{-4.5cm}
+	\includegraphics[scale=0.35]{imagem_5.eps}
+	%\includegraphics[width=40cm,height=40cm,keepaspectratio]{codigo/pressao_sonora_geradora.eps}
+	\caption{Tempos de reverberação das câmaras I e II. Fonte: \cite{silva2009simulaccao}}
+	\label{experimento_3}
 \end{figure}
 
-A frequência mínima é determinada pelo espaço entre os microfones e a precisão do sistema de aquisição de dados. O espaço entre os microfones deve ser maior que um por cento do comprimento de onda correspondente da menor frequência de interesse. Em nosso experimento a distância entre o dois primeiros microfones é de 31,5mm e dos segundos microfones é de 30,0 mm.
+Segue disposição experimental da câmara I geradora na figura \ref{experimento_4}.
 
-A frequência máxima depende do diâmetro do tubo, o espaço entre os microfones, da velocidade do som e pode ser calculada por:
-\begin{equation}
-    f_{max} < \frac{Kc}{d}
-\end{equation}
-Tal que $f_{max}$ é a frequência máxima, $c$ é a velocidade do som no tubo (m/s), $d$ é o diâmetro do tubo (m) e $K$ uma constante no valor de 0.856.
-
-Posicionado no lado esquerdo estará o a fonte sonora, que deverá ter uma reposta plana no range de frequência de interesse. Podendo ser coaxial com o tubo principal ou unido ao tubo principal por meio de uma união exponencial (tipo corneta). O sinal empregado nos testes deverá ser um sinal aleatório tendo uma densidade espectral uniforme ao longo da frequência de interesse. Em nossos testes foi utilizado um ruído branco pseudoaleatório.
-No lado direito do tubo será instalado uma terminação anecóica. Uma conveniente maneira de obter essa terminação é instalar uma espuma isolante, tipo lã de rocha ou fibra de vidro, de forma piramidal de 30 cm de comprimento no final do tubo.
- A obtenção dos dados dá-se por meio da determinação da matriz de transferência, que por sua vez será obtida a partir de três medições da função transferência $H$. Serão realizados três testes para o ressonador de Helmholtz e três para a câmara de expansão com dois tipos diferentes de terminação, anecóica e rígida. Além disso serão realizados também três testes com o tubo vazio para as duas terminações anecóica e rígida, para encontrar a curva de perda de transmissão do tubo sem nenhum material dentro.
 
 \chapter{Resultados}\label{resultados}
+
+No que diz respeteito aos resultados do experimento abordado, foram consolidados o espectro de frequências do ruído branco e do ruído de fundo nas salas geradoras e receptoras respectivamente e, como resultado principal, foi extraído a perda de transmissão em relação as frequências por 2 métodos, o indireto (por comparação) e direto (por sabine, usando o tempo de reverberação da câmara).
 
 \begin{figure}[h]
 %\centering
@@ -124,7 +74,9 @@ No lado direito do tubo será instalado uma terminação anecóica. Uma convenie
 \label{resultado_1}
 \end{figure}
 
+Diante do que é exposto no gráfico da figura \ref{resultado_1} é perceptível que o ruído branco se sobressaiu mais que 15 dB em relação ao ruído de fundo. Esse fato corrobora com uma medida sem necessidades de correção, pelo que é exposto em \cite{silva2009simulaccao}.
 
+\newpage
 \begin{figure}[h]
 %\centering
 \hspace{-4.5cm}
@@ -133,6 +85,9 @@ No lado direito do tubo será instalado uma terminação anecóica. Uma convenie
 \label{resultado_2}
 \end{figure}
 
+Diante do que é exposto no gráfico da figura \ref{resultado_2} é perceptível que o ruído branco se sobressaiu mais que 15 dB em relação ao ruído de fundo. Esse fato corrobora com uma medida sem necessidades de correção, pelo que é exposto em \cite{silva2009simulaccao}.
+
+\newpage
 \begin{figure}[h]
 %\centering
 \hspace{-4.5cm}
@@ -140,6 +95,8 @@ No lado direito do tubo será instalado uma terminação anecóica. Uma convenie
 \caption{Gráfico de perda de transmissão da placa de alumínio.}
 \label{resultado_3}
 \end{figure}
+
+A figura \ref{resultado_3} mostra o resultado principal do experimento: a perda de transmissão em relação a frequência. É perceptível que, a medida que a placa é exposta para altas frequências, há uma perda maior. E esse fato corrobora com o que é medido pelo método indireto (feito por tempo de reverberação). As extremidades do gráfico, onde aparecem as curvas, dizem respeito ao regime elástico de comportamento, a parte linear diz respeito ao regime rígido da placa.
 
 
 \chapter{Conclusões}\label{conclusoes}

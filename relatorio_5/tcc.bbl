@@ -5,4 +5,11 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.2 }
 
+\bibitem[Silva et al. 2009]{silva2009simulaccao}
+\abntrefinfo{Silva et al.}{SILVA et al.}{2009}
+{SILVA, M. M.~d. et al. Simula{\c{c}}{\~a}o empregando an{\'a}lise
+  estat{\'\i}stica de energia (sea) e verifica{\c{c}}{\~a}o experimental de
+  perda de transmiss{\~a}o sonora de um painel sandu{\'\i}che.
+Florian{\'o}polis, SC, 2009.}
+
 \end{thebibliography}
