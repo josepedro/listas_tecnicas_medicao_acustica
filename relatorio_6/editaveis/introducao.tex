@@ -1,0 +1,56 @@
+\chapter[Introdução]{Introdução}
+
+\section{Resumo da Proposta}
+No contexto de garantir a qualidade do \textit{software}, a disciplina de verificação e validação é de suma importância pois nela são postuladas várias técnicas de integridade. Uma dessas são os vários tipos de testes feitos no \textit{software}. Um tipo de teste que vêm sendo usado cada vez mais é o $Behavior$ $Driven$ $Development$ (BDD).
+
+O $Behavior$ $Driven$ $Development$ (BDD) se difere dos outros tipos de testes pois nele é possível fazer a verificação e validação do \textit{software} numa mesma técnica (ao contrário dos testes unitários que só visam garantir a verificação, ou seja, se a implementação funciona com taxa de erros mínima). Para tal, o insumo de entrada do BDD é um requisito funcional, normalmente no formato de cenário ou uma história de usuário. Esse requisito é transposto num script para a ferramenta de BDD. O fluxo do script de BDD normalmente é um cenário de uso no qual há \textbf{condições prévias}, conjunto de \textbf{ações} de execução do usuário a serem realizadas e \textbf{comportamentos} esperados dessas ações. Falhas são detectadas caso algum comportamento do teste ocorra de forma inesperada. Como o insumo de entrada do BDD é um requisito funcional que tenha valor para o usuário, o BDD corrobora também para validação do \textit{software} \cite{bdd_validacao}.
+
+\textit{Frameworks} em gerais são essenciais para a produção de \textit{software} no que tange o desenvolvimento web. Um exemplo que vem chamando muito atenção é o Django. Essa ferramenta visa a implementação e implantação de \textit{software} com arquitutera MVT ($Model$-$View$-$Template$) tendo como base a linguagem de programação \textit{Python}.
+
+Assim como tem ocorrido com outros tipos de \textit{frameworks} de mesma categoria (exemplo \textit{Rails}), está crescendo muito a demanda por ferramentas que implementem testes. No caso específico de BDD há o exemplo de ferramenta \textit{Lettuce}. Essa ferramenta de BDD se originou com base no \textit{Cucumber}, porém é focada para aplicações \textit{Python}/Django \cite{sale2014testing}. Através de comandos de linguagem natural é possível configurar comportamentos testáveis via procedimentos em código \textit{Python}.
+
+Como a ferramenta \textit{Lettuce} é relativamente nova em comparação às outras do mesmo objetivo, há poucas fontes de documentação e tutoriais de uso abrangente, além das mesmas serem fragmentadas dispersas na internet. Esse fato é mais eloquente no que tange o idioma português. Tais fatores dificultam o acesso e a curva de aprendizado no uso do BDD em \textit{software}s \textit{Python}/Django.
+
+Dado o contexto exposto, o presente trabalho possui os seguintes objetivos:
+\begin{itemize}
+	\item geral: desenvolver um guia de implementação BDD em português para \textit{Python}/Django usando a ferramenta \textit{Lettuce}, focando contribuir na consolidação de fontes de informações de uso.
+	\item específicos:
+		\begin{itemize}
+			\item apresentar uma breve fundamentação teórica sobre $Behavior$ $Driven$ $Development$ (BDD);
+			\item apresentar de forma geral o funcionamento da ferramenta \textit{Lettuce} no contexto \textit{Python}/Django;
+			\item desenvolver tutorial de uso da ferramenta \textit{Lettuce};
+			\item apresentar a implementação de testes BDD num \textit{software} em evolução \textit{Python}/Django;
+			\item oferecer como suporte ao guia de implementação de BDD vídeo tutorial sobre configurações e uso da ferramenta \textit{Lettuce}.  
+		\end{itemize}
+\end{itemize}
+
+\section{\textit{Software} a Ser Testado}
+
+Verificando o atual tempo de espera em paradas de ônibus, e dada a inacurácia do horário de algumas, se não todas, linhas de ônibus do DF, o $webapp$ Busine.me vem com o objetivo de ajudar o usuário do transporte público a minimizar seu tempo de espera e conhecimento dos ônibus que estão por vir. Este surgiu partindo da premissa de que a colaboração popular é a melhor maneira de  conhecer e melhorar os assuntos públicos.
+
+A ideia do aplicativo é muito simples, porém, muito eficaz. Uma pessoa pode se cadastrar no sistema e, ao pegar um ônibus, ela realiza um $check-in$. Nesta etapa a pessoa entra com alguns dados relativos à condução em que está, como, por exemplo, parada em que pegou o ônibus, lotação e trânsito. Outra pessoa pode procurar por uma das linhas e receber essas informações e, assim, se preparar para pegar o ônibus desejado.
+
+Portanto, o Busine.me tem como objetivo levar uma informação mais atualizada ao usuário, utilizando dados fornecidos pelos próprios usuários, que, através de seus $smartphones$, alimentam o sistema com as posições atuais dos ônibus, além de disponibilizarem também informações como transito, lotação e ônibus quebrado.
+
+O $software$ Busine.me está sendo desenvolvido em duas frentes diferentes, uma chamada BusinemeWeb e outra BusinemeAPI. A frente BusinemeWeb diz respeito à aplicação que será utilizada pelo usuário final em seus $smartphones$, a frente BusinemeAPI concentra o parser dos dados abertos fornecidos pelo DFTrans e os tratamentos de dados necessários, além de disponibilização de dados via requisições. A frente testada neste projeto será a BusinemeWeb, que é dependente da BusinemeAPI, pois a todo instante envia requisições de dados e os recebe em formato Json, para que seja devidamente tratado e exibido aos usuários finais. 
+
+
+\section{Dificuldades Encontradas}
+
+As dificuldades encontradas no desenvolver do projeto são de duas naturezas: tecnologia e processo de desenvolvimento e pesquisa. No que diz respeito a tecnologia as dificuldades foram:
+	\begin{itemize}
+		\item alta curva de aprendizado sobre o \textit{framework} Django;
+		\item alta curva de aprendizado sobre o \textit{framework} de BDD \textit{Lettuce};
+		\item vários pacotes de dependências para instalação e uso do \textit{Lettuce} e Django;
+		\item configuração do \textit{framework} Django;
+		\item configuração da ferramenta \textit{Lettuce} no \textit{framework} Django;
+		\item configuração de um browser default para o splinter.
+	\end{itemize}
+
+Em relação ao processo de desenvolvimento e pesquisa, foram constatados os seguintes problemas:
+	\begin{itemize}
+		\item atrasos no cronograma;
+		\item bloqueio de tarefas de cada integrante por uma depender da outra;
+		\item escopo do trabalho parcialmente definido;
+		\item inconsistências no relatório anterior.
+	\end{itemize}
