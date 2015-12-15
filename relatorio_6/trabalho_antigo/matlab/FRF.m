@@ -1,0 +1,85 @@
+clear all; close all; clc
+%% FRF's
+%PLACA
+load FRF_placa
+f = FRF_placa(:,1);
+real_1=FRF_placa(:,2);
+imag_1=FRF_placa(:,3); 
+Y_1=real_1+1i*imag_1; 
+FRF_1 = abs(1./Y_1);
+real_2=FRF_placa(:,5);
+imag_2=FRF_placa(:,6); 
+Y_2=real_2+1i*imag_2;
+FRF_2 = abs(1./Y_2);
+%% FRF's
+%VIGA
+load FRF_viga
+f=FRF_viga(:,1);
+real=FRF_viga(:,2);
+imag=FRF_viga(:,3);
+Y = real+1i*imag;
+FRFa = abs(Y);
+FRF_dB=20*log10(1./FRFa);
+[a,fc]=findpeaks(FRF_dB,'MinPeakDistance',40);
+% ESCOLHENDO O PICO DE RESSONÂNCIA
+a=a(4);fc=fc(4);
+FRF_dB_peak=FRF_dB(fc-120:fc+120);
+k = find(FRF_dB_peak>=a-3.5);
+f1 = k(1);f2 = k(end);
+netta=((f2-f1)/fc);
+figure(1)
+semilogx(f,FRF_dB,'LineWidth',1.5);
+xlabel('Frequência - Hz','FontSize',20)
+ylabel('Y(j\omega)','FontSize',20)
+title('FRF inertância da viga','FontSize',20)
+xlim([10 3200])
+window = zeros(1,length(FRF_dB_peak));
+window(f1:f2)=1;
+figure(2)
+str = ['\eta = ',num2str(netta)];
+plot(FRF_dB_peak,'LineWidth',1.5);hold on
+plot((a-3)*window,'r--','LineWidth',1.5)
+text(f2+10,a-3,str,'FontSize',20)
+k=legend('4ª Ressonância da viga','Banda de meia-potência','Location','Northwest');
+set(k,'FontSize',18)
+xlabel('Número de pontos','FontSize',20)
+ylabel('Amplitude','FontSize',20)
+title('Fator de Perda - (Método da Banda de Meia-Potência)','FontSize',20)
+
+%% DECAIMENTO LOGARITIMICO 
+load dado_decay
+t = dado_decay(:,1);
+a = sqrt((dado_decay(:,2)).^2);
+a0 = 1e-5;
+fc = [50 63 80 100 125 160 200 250 315 400 500 630 800 1000 1250 1600 2000 2500 3150 4000 5000 6300 8000 10000];
+dB_ac=10*log10((a.^2)./(a0^2));
+m=find(dB_ac>100);
+U=polyfit(t(m:8e4),dB_ac(m:8e4),1);
+E=polyval(U,t(m:8e4));
+eta = (2.2./((60/-U(1)*fc)));
+figure(3)
+plot(t,dB_ac,'k');hold on
+plot(t(m:8e4),E,'r--','LineWidth',3)
+str2=['TR_{médio} = ',num2str(60/-U(1))];
+text(1,15,str2,'FontSize',18)
+axis([t(m(1)) t(8e4) 0 120])
+title('Decaimento de energia vibratória','FontSize',20)
+xlabel('Tempo - s','FontSize',20)
+ylabel('Amplitude - dB','FontSize',20)
+robustdemo(t(m:8e4),dB_ac(m:8e4))
+figure(4)
+bar(eta)
+title('Fator de Perda - (Método do Decaimento Logarítimico)','FontSize',20)
+ylabel('\eta','FontSize',20)
+xlabel('Frequência - Hz','FontSize',20)
+set(gca,'XTick',1:1:24)
+set(gca,'XTickLabel',{'50','63','80','100','125', '160', '200', '250', '315',...
+ '400', '500','630', '800' ,'1k', '1.25k' ,'1.6k', '2k' ,'2.5k',...
+'3.15k', '4k','5k','6.3k','8k','10k'},'FontSize',12)
+grid on
+
+
+
+    
+
+
