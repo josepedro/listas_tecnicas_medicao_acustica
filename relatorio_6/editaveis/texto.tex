@@ -1,99 +1,40 @@
 \chapter{Introdução}\label{introducao}
 % determinacao da potencia sonora
 
-Várias técnicas de controle de ruído foram desenvolvidas nesses últimos tempos visando oferecer ao ouvido humano um ambiente agradável, principalmente no que diz respeito a dissipassão de energia acústica por perda de transmissão em determinadas faixas de frequências. Para tanto, faz-se uso de análise e estudo da perda de transmissão em placas.
+Várias técnicas de controle de ruído e vibrações foram desenvolvidas nesses últimos tempos visando oferecer um ambiente agradável, principalmente no que diz respeito a dissipassão de energia de vibração em elementos estruturais. Para tanto há 2 análises possíveis a se fazer do elemento estrutural: funções resposta em frequência (FRF's) e coeficientes de amortecimento. 
 
-Para a determinação dos procedimentos de medição da perda de transmissão de placas tomou-se como referência a norma \textbf{ISO 10140-2}. Os procedimentos descritos nessa norma abrange a utilização de duas câmaras reverberantes e uma placa que está entre essas duas câmaras que irá transferir energia acústica da câmara geradora para câmara receptora.
-
-Em vista do que foi exposto, esse trabalho tem como objetivo determinar e analisar o comportamento da perda de transmissão em uma placa alumínio naval fixada entre as duas câmaras reverberantes.
+Em vista do que foi exposto, esse trabalho tem como objetivo determinar e analisar o comportamento das funções resposta em frequência (FRF's) e coeficientes de amortecimento. Para determinação e análise das funções resposta em frequência serão objetos de estudo uma viga engastada e uma placa suspensa, uma excitada por uma martelada e outra por um $shaker$ transmissor de ruído branco respectivamente. Para a determinação e análise dos coeficientes de amortecimento, será objeto de estudo uma placa fina que será submetida, dado os parâmetros corretos de entrada, aos cálculos de decaimento de energia e a banda de meia potência.
 
 \chapter{Fundamentação Teórica}\label{fundamentacao}
 
-Segundo \cite{lenzi2009modelos}, a medição de perda de transmissão sonora ocorre através de duas câmaras, onde uma câmara é conhecida como câmara de emissão (geradora) e outra conhecida como câmara de recepção (receptora) separadas por um elemento de teste como mostra a figura \ref{teoria_1}. Para esse ensaio, assume-se que toda a energia sonora é transmitida via elemento de teste e não ocorre transmissão sonora estrutural para sala de recepção pelas superfícies em contato entre as duas câmaras.
+Segundo \cite{lenzi2009modelos} funções resposta em frequência (FRF) são tipos de funções transferência que associa um sinal de entrada num sistema (por exemplo força) a um sinal de saída que pode ser a aceleração, velocidade ou deslocamento de um ponto de interesse de uma estrutura. Existem diversos tipos de FRF's que podem ser divididas em grupos dependendo do tipo de grandeza associada:
+\begin{itemize}
+	\item Receptância ou rigidez dinâmica: deslocamento/força ou força/deslocamento respectivamente;
+	\item Mobilidade ou impedância mecânica: velocidade/força ou força/velocidade respectivamente;
+	\item Inertância ou massa aparente: aceleração/força ou força/aceleração respectivamente.
+\end{itemize}
 
-\begin{figure}[h]
-	\centering
-	%\hspace{-4.5cm}
-	\includegraphics[scale=0.5]{teoria_1.eps}
-	%\includegraphics[width=40cm,height=40cm,keepaspectratio]{codigo/pressao_sonora_geradora.eps}
-	\caption{Câmaras acústicas (emissão e recepção) separadas por um elemento de teste de
-área $S_p$. Fonte: \cite{silva2009simulaccao}}
-	\label{teoria_1}
-\end{figure}
+Experimentalmente as FRFs podem ser adquiridas utilizando-se de transdutores piezelétricos de aceleração (acelerômetros) e de força (martelo/cabeça de impedância/célula de carga) específicos para o contexto de vibrações. Os transdutores convertem o sinal da grandeza física medida (direta ou indiretamente) em um sinal de tensão elétrica proporcional a grandeza mensurada. Os sinais fornecidos pelos transdutores são enviados a um amplificador, convertidos para o domínio digital-discreto e depois a um software de pós-processamento dos dados no intuito de obter as informações de interesse. Vale ressaltar que normalmente o processamento de dados tem como base a transformada de fourier visto que a maioria dos fenômenos de vibrações são mais visíveis no domínio da frequência. Para esse contexto foi medido a inertância da viga engastada e da placa suspensa, uma função resposta em frequência (FRF) obtida a partir da razão da transformada de fourier (FFT) da aceleração ao longo do tempo pela transformada de fourier (FFT) da força ao longo do tempo.
 
-A intensidade sonora incidente na superfície de transmissão nesse ambiente é dada pela equação \ref{eq1}, quando o campo difuso na sala emissora é estabelecido através de uma pressão sonora $p_{e}$.
+No que diz respeito ao método do decaimento é necessário definir qual equação que rege a vibração de um sistema massa-mola-amortecedor. Normalmente sistemas massa-mola-amortecedor com movimentos repetitivos (vibratórios) são regidos pela equação
 
+\begin{equation}  
+	x(t) = X_{o}e^{-\xi\omega_{n}t}e^{j\omega_{d}t},
+\end{equation}
+tal que $X_{o}$ é a amplitude máxima do movimento vibratório, $\xi$ é a razão de amortecimento (quanto maior $\xi$, menor será o tempo do elemento estrutural entrar em estado estacionário), $\omega_{n}$ é a frequência natural do sistema e $\omega_{d}$ frequência natural amortecida (frequência no qual o amortecimento irá atuar). Para a definição da frequência natural do sistema usa-se a fórmula 
 \begin{equation}
-	I_{e}=\frac{p_{e}^{2}}{4\rho c}
-	\label{eq1}
+	\omega_{n} = \sqrt{\frac{k}{m}},
+\end{equation}
+tal que $k$ é o coeficiente de rigidez do sistema e $m$ é a massa. Para o cálculo da frequencia de amortecimento pode-se fazer do uso da fórmula 
+\begin{equation}
+	\omega_{d} = \omega_{n}\sqrt{1 - \xi}.	
 \end{equation}
 
-Por definição o coeficiente de perda de transmissão $\tau$ é definido pela razão da intensidade sonora na câmara geradora pela câmara receptora ficando na forma da equação \ref{eq2}.
-
+Vale ressaltar também que a energia vibratória é proporcional ao módulo do deslocamento de tal forma que $E(t) \propto e^{-2\xi\omega_{n}t}$. E, considerando que o tempo de reverberação $T_{60}$ da estrutura é o tempo em que relatada energia decai em 60 dB, o coeficiente de amortecimento $\eta$ de um elemento estrutural massa-mola-amortecedor é dada pela equação 
 \begin{equation}
-	\tau=\frac{I_{trans}}{I_{inc}}
-	\label{eq2}
+	\eta = \frac{3}{\pi f_{n}T_{60}log_{10}e},
 \end{equation}
-
-De forma logarítmica o $\tau$ é expresso como perda de transmissão sonora aérea $PT$ tal qual é expresso na equação \ref{eq3}.
-
-\begin{equation}
-	PT = 10 log_{10}\left(\frac{1}{\tau}\right)
-	\label{eq3}
-\end{equation}
-
-Como a transmissão sonora é produzida somente pela placa delimitada pela área $S_p$, a potência da energia acústica na câmara geradora é dada pela equação \ref{eq4}.
-
-\begin{equation}
-	W_{geradora} = I_{geradora}S_{p}\;,
-	\label{eq4}	
-\end{equation}
-
-Ou pode ser dada pela equação \ref{eq5}.
-\begin{equation}
-	W_{geradora} = I_{receptora}\tau S_{p}\;,
-	\label{eq5}	
-\end{equation}
-
-Sabendo que a intensidade sonora na câmara receptora é equivalente a $ I=\frac{p_{e}^{2}}{4\rho c} $, a potência acústica transmitida para sala receptora é expressa pela equação \ref{eq6}.
-
-\begin{equation}
-	W_{geradora}=\frac{p_{e}^{2}}{4\rho c}\tau S_{p}
-	\label{eq6}
-\end{equation}
-
-A potência sonora radiada pela parede para a sala receptora é igual a potência sonora absorvida pela mesma sala, e se esta sala também possui um campo sonoro difuso, tem-se que a potência transmitida é equivalente a potência absorvida dada pela equação \ref{eq6}.
-
-\begin{equation}
-	W_{trans} = W_{abs}=\frac{p_{r}^{2}}{4\rho c}A\;,
-	\label{eq6}
-\end{equation}
-
-\noindent{onde $ A $ é a absorção sonora equivalente da sala receptora.}
-Através da equivalência entre a potência sonora transmitida e absorvida pode-se obter a perda de transmissão pela equação \ref{eq7}.
-\begin{equation}
-	\tau = \frac{p_{r}^{2}}{p_{e}^{2}}\frac{S_{p}}{A}
-	\label{eq7}
-\end{equation}
-
-Ou pode ser dado pela equação \ref{eq8}.
-
-\begin{equation}
-	PT = NPS_{e} - NPS_{r} + 10log_{10}\left(\frac{S_{p}}{A}\right)
-	\label{eq8}
-\end{equation}
-
-Segundo \cite{silva2009simulaccao} e \cite{lenzi2009modelos} o coeficiente de absorção $A$ pode ser calculado por duas formas. A primeira é usado o tempo de reverberação da sala receptora dada pela equação \ref{eq9}, tal qual $V$ é o volume da câmara e $T_{60}$ é o tempo de reverberação da câmara. A segunda, expressa pela formula \ref{eq10}, é usando a diferença da potência de referência da fonte e o nível de pressão da fonte de referência dentro câmara.
-
-\begin{equation}
-	A = \frac{0,161V}{T_{60}}
-	\label{eq9}
-\end{equation}
-
-\begin{equation}
-	log_{10}A = 6,2 + NWS_{referencia} - NPS_{referencia}	
-	\label{eq10}
-\end{equation}
+tal que $e$ é uma constante cujo valor aproximado é $e \cong 2,7181$ e $f_{n}$ a frequência natural do enésimo modo.
 
 \chapter{Experimento e Equipamentos}\label{descricao}
 
@@ -172,7 +113,7 @@ No que diz respeteito aos resultados do experimento abordado, foram consolidados
 \begin{figure}[h]
 %\centering
 \hspace{-4.5cm}
-\includegraphics[scale=0.6]{codigo/pressao_sonora_geradora.eps}
+%\includegraphics[scale=0.6]{codigo/pressao_sonora_geradora.eps}
 %\includegraphics[width=40cm,height=40cm,keepaspectratio]{codigo/pressao_sonora_geradora.eps}
 \caption{Níveis de pressão sonora na câmara geradora de ruído branco.}
 \label{resultado_1}
@@ -184,7 +125,7 @@ Diante do que é exposto no gráfico da figura \ref{resultado_1} é perceptível
 \begin{figure}[h]
 %\centering
 \hspace{-4.5cm}
-\includegraphics[scale=0.6]{codigo/pressao_sonora_receptora.eps}
+%\includegraphics[scale=0.6]{codigo/pressao_sonora_receptora.eps}
 \caption{Níveis de pressão sonora na câmara receptora de ruído branco.}
 \label{resultado_2}
 \end{figure}
@@ -195,7 +136,7 @@ Diante do que é exposto no gráfico da figura \ref{resultado_2} é perceptível
 \begin{figure}[h]
 %\centering
 \hspace{-4.5cm}
-\includegraphics[scale=0.6]{codigo/perda_transmissao.eps}
+%\includegraphics[scale=0.6]{codigo/perda_transmissao.eps}
 \caption{Gráfico de perda de transmissão da placa de alumínio.}
 \label{resultado_3}
 \end{figure}

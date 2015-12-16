@@ -3,23 +3,24 @@ clear all; close all; clc
 %PLACA
 load FRF_placa
 f = FRF_placa(:,1);
-real_1=FRF_placa(:,2);
-imag_1=FRF_placa(:,3); 
-Y_1=real_1+1i*imag_1; 
+real_1 = FRF_placa(:,2);
+imag_1 = FRF_placa(:,3); 
+Y_1 = real_1+1i*imag_1; 
 FRF_1 = abs(1./Y_1);
-real_2=FRF_placa(:,5);
-imag_2=FRF_placa(:,6); 
-Y_2=real_2+1i*imag_2;
+real_2 = FRF_placa(:,5);
+imag_2 = FRF_placa(:,6); 
+Y_2 = real_2+1i*imag_2;
 FRF_2 = abs(1./Y_2);
+
 %% FRF's
 %VIGA
 load FRF_viga
-f=FRF_viga(:,1);
-real=FRF_viga(:,2);
-imag=FRF_viga(:,3);
+f = FRF_viga(:,1);
+real = FRF_viga(:,2);
+imag = FRF_viga(:,3);
 Y = real+1i*imag;
 FRFa = abs(Y);
-FRF_dB=20*log10(1./FRFa);
+FRF_dB = 20*log10(1./FRFa);
 [a,fc]=findpeaks(FRF_dB,'MinPeakDistance',40);
 % ESCOLHENDO O PICO DE RESSONÂNCIA
 a=a(4);fc=fc(4);
@@ -31,7 +32,7 @@ figure(1)
 semilogx(f,FRF_dB,'LineWidth',1.5);
 xlabel('Frequência - Hz','FontSize',20)
 ylabel('Y(j\omega)','FontSize',20)
-title('FRF inertância da viga','FontSize',20)
+title('FRF da viga','FontSize',20)
 xlim([10 3200])
 window = zeros(1,length(FRF_dB_peak));
 window(f1:f2)=1;
